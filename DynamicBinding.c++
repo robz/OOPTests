@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <iostream>
 
 class Animal
@@ -9,8 +10,13 @@ class Animal
             _name = name;
         }
 
+    private:
         virtual const char* makeNoise() {
             return "~silence~";
+        }
+
+        void printNoise() {
+            printf("%s\n", makeNoise());
         }
 };
 
@@ -49,9 +55,26 @@ int main(void) {
     {
         Animal a("joy");
         Animal* d = new Dog("georgie", "rrruff");
-        Animal* c = new Cat("kitty!", "meowwww");
+        Cat* c = new Cat("kitty!", "meowwww");
 
-        cout << c->makeNoise() << endl;
+        Animal* c2 = dynamic_cast<Animal*>(c);
+
+        if (!c2) {
+            cout << "nope nope nope" << endl;
+        } else {
+            //cout << c2->makeNoise() << endl;
+            //c2->printNoise();
+        }
+    }
+
+    {
+        Dog* d = new Dog("georgie", "rrruff");
+        d->printNoise();
+    }
+
+    {
+        int x;
+        int* px = &x;
     }
 
     return 0;

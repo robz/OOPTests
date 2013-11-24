@@ -1,0 +1,63 @@
+Questions to ask overflow:
+
+
+
+
+1. Inconsistent compilation error? 
+
+The assignment of a readonly double pointer to the address of a read/write pointer...
+
+int x;
+int* px = &x;
+const int** ppx = &px; // this line
+
+Generates this compile error:
+
+error: invalid conversion from ‘int**’ to ‘const int**’
+
+So why doesn't the assignment of a readonly pointer to the address of a read/write variable...
+
+int x;
+const int* px = &x;
+
+Generate a compile error like "invalid conversion from 'int*' to 'const int*'"? What's the logic behind this behavior?
+
+
+
+
+2. Dynamically binding private functions: Java vs. C++
+
+This is not allowed in Java:
+
+class A {
+    public void method() {}
+}
+
+class B extends A {
+    private void method() {}
+}
+
+It generates a compile error:
+
+error: method() in B cannot override method() in A
+attempting to assign weaker access privileges; was public
+
+However, this IS allowed in C++:
+
+class A {
+    public:
+        virtual void method() {}
+}
+
+class B : public A {
+    private:
+        void method() {}
+}
+
+int main(void) {
+    A* obj = new B();
+    obj->method(); // B's "method" is called, despite it being private
+}
+
+It seems that adding a virtual modifier to a method in a class will cause any private modifier in the children of that class to be ignored, without any errors or warnings. What's the logic behind this behavior in C++?
+
