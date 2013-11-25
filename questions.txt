@@ -22,7 +22,7 @@ const int* px = &x;
 
 Generate a compile error like "invalid conversion from 'int*' to 'const int*'"? What's the logic behind this behavior?
 
-
+A. By way of analogy, if you hide a criminal under a lawful disguise, he can then exploit the trust given to that disguise. That's bad. 
 
 
 2. Dynamically binding private functions: Java vs. C++
@@ -61,3 +61,4 @@ int main(void) {
 
 It seems that adding a virtual modifier to a method in a class will cause any private modifier in the children of that class to be ignored, without any errors or warnings. What's the logic behind this behavior in C++?
 
+A. See NVI pattern file and PrivateInheritance file for examples of uses of private virtual methods.
